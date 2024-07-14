@@ -1,8 +1,9 @@
 import { KZ_IMG_PATH, NFACTORIAL_IMG_PATH } from "../img"
 import Tweet from './Tweet';
+import React from 'react';
 
 
-const TweetsList = () => {
+const TweetsList = ({ searchQuery }) => {
     const tweets = [
         {
             authorName: 'Free KZ today',
@@ -12,6 +13,15 @@ const TweetsList = () => {
             replies:200,
             retweets: 1000,
             likes:500,
+        },
+        {
+            authorName: 'nFactorial',
+            authorUsername: '@nfactorial',
+            img: NFACTORIAL_IMG_PATH,
+            content: 'Шаймаганбетов Серикбол прошел курс frontend developer в nFactorial!',
+            replies: 1000000,
+            retweets: 400000,
+            likes: 1000000,
         },
         {
             authorName: 'nFactorial',
@@ -44,10 +54,10 @@ const TweetsList = () => {
             authorName: 'nFactorial',
             authorUsername: '@nfactorial',
             img: NFACTORIAL_IMG_PATH,
-            content: 'Black friday! Успей купить курсы сегодня!',
-            replies: 1,
-            retweets: 4,
-            likes: 4,
+            content: 'Шаймаганбетов Серикбол прошел курс frontend developer в nFactorial!',
+            replies: 1000000,
+            retweets: 400000,
+            likes: 1000000,
         },
         {
             authorName: 'nFactorial',
@@ -57,10 +67,24 @@ const TweetsList = () => {
             replies: 1,
             retweets: 4,
             likes: 4,
-        }
-    ]
+        },
+        {
+            authorName: 'nFactorial',
+            authorUsername: '@nfactorial',
+            img: NFACTORIAL_IMG_PATH,
+            content: 'Шаймаганбетов Серикбол сдал все домашки!',
+            replies: 1000000,
+            retweets: 400000,
+            likes: 1000000,
+        },
+    ];
 
-    return tweets.map((tweet, index) => <Tweet {...tweet} key={index} />)
+    const filteredTweets = tweets.filter(tweet => {
+        const firstWord = tweet.content.split(' ')[0].toLowerCase();
+        return firstWord.includes(searchQuery.toLowerCase());
+    });
+
+    return filteredTweets.map((tweet, index) => <Tweet {...tweet} key={index} />);
 }
 
 export default TweetsList;
