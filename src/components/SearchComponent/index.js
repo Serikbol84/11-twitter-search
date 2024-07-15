@@ -5,8 +5,9 @@ const SearchMenu = ({ onSearch }) => {
     const [query, setQuery] = useState('');
 
     const handleInputChange = (event) => {
-        setQuery(event.target.value);
-        onSearch(event.target.value);
+        const newQuery = event.target.value;
+        setQuery(newQuery);
+        onSearch(newQuery);
     };
 
     return (

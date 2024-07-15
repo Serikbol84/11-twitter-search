@@ -79,12 +79,17 @@ const TweetsList = ({ searchQuery }) => {
         },
     ];
 
-    const filteredTweets = tweets.filter(tweet => {
-        const firstWord = tweet.content.split(' ')[0].toLowerCase();
-        return firstWord.includes(searchQuery.toLowerCase());
-    });
+    const filteredTweets = tweets.filter(tweet => 
+        tweet.content.toLowerCase().startsWith(searchQuery.toLowerCase())
+    );
 
-    return filteredTweets.map((tweet, index) => <Tweet {...tweet} key={index} />);
+    return (
+        <div>
+            {filteredTweets.map((tweet, index) => (
+                <Tweet {...tweet} key={index} />
+            ))}
+        </div>
+    );
 }
 
 export default TweetsList;
